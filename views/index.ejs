@@ -1,0 +1,38 @@
+<%- include('layout') %>
+
+<h1 class="text-3xl font-bold mb-4 text-center">Student Management</h1>
+
+<div class="text-center mb-4">
+  <a href="/students/create" class="bg-green-600 text-white px-4 py-2 rounded">
+    Add Student
+  </a>
+</div>
+
+<table class="w-full bg-white shadow rounded">
+  <thead class="bg-blue-600 text-white">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Course</th>
+      <th>Year</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% students.forEach(s => { %>
+      <tr class="text-center border-b">
+        <td><%= s.name %></td>
+        <td><%= s.age %></td>
+        <td><%= s.course %></td>
+        <td><%= s.year %></td>
+        <td>
+          <a href="/students/edit/<%= s._id %>" class="text-blue-600">Edit</a>
+
+          <form action="/students/delete/<%= s._id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button class="text-red-600">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

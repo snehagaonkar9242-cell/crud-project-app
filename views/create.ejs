@@ -1,0 +1,14 @@
+<%- include('layout') %>
+
+<h2 class="text-2xl mb-4">Add Student</h2>
+
+<form action="/students/add" method="POST" class="space-y-3">
+  <input name="name" placeholder="Name" class="w-full p-2 border rounded" />
+  <input name="age" placeholder="Age" class="w-full p-2 border rounded" />
+  <input name="course" placeholder="Course" class="w-full p-2 border rounded" />
+  <input name="year" placeholder="Year" class="w-full p-2 border rounded" />
+
+  <button class="bg-blue-600 text-white px-4 py-2 rounded">
+    Save
+  </button>
+</form>

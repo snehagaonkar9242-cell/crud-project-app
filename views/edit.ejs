@@ -1,0 +1,14 @@
+<%- include('layout') %>
+
+<h2 class="text-2xl mb-4">Edit Student</h2>
+
+<form action="/students/update/<%= student._id %>?_method=PUT" method="POST" class="space-y-3">
+  <input name="name" value="<%= student.name %>" class="w-full p-2 border rounded" />
+  <input name="age" value="<%= student.age %>" class="w-full p-2 border rounded" />
+  <input name="course" value="<%= student.course %>" class="w-full p-2 border rounded" />
+  <input name="year" value="<%= student.year %>" class="w-full p-2 border rounded" />
+
+  <button class="bg-green-600 text-white px-4 py-2 rounded">
+    Update
+  </button>
+</form>
