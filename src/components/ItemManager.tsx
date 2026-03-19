@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function ItemManager({ students = [], onDelete }: any) {
+function ItemManager({ students, onDelete }: any) {
   const navigate = useNavigate();
 
   return (
@@ -34,24 +34,25 @@ function ItemManager({ students = [], onDelete }: any) {
             ) : (
               students.map((s: any, i: number) => (
                 <tr key={i}>
-                  <td>{s?.name || "N/A"}</td>
-                  <td>{s?.age || "N/A"}</td>
-                  <td>{s?.course || "N/A"}</td>
-                  <td>{s?.year || "N/A"}</td>
+                  <td>{s.name}</td>
+                  <td>{s.age}</td>
+                  <td>{s.course}</td>
+                  <td>{s.year}</td>
                   <td>
+                    {/* Edit navigates to AddStudent with index */}
                     <button
-                      className="action-btn edit-btn"
-                      onClick={() => navigate(`/add/${i}`)}
-                    >
-                      Edit
-                    </button>
+  className="action-btn edit-btn"
+  onClick={() => navigate(`/add/${i}`)}
+>
+  Edit
+</button>
 
-                    <button
-                      className="action-btn delete-btn"
-                      onClick={() => onDelete(i)}
-                    >
-                      Delete
-                    </button>
+<button
+  className="action-btn delete-btn"
+  onClick={() => onDelete(i)}
+>
+  Delete
+</button>
                   </td>
                 </tr>
               ))
@@ -63,4 +64,4 @@ function ItemManager({ students = [], onDelete }: any) {
   );
 }
 
-export default ItemManager;
+export default ItemManager; 
