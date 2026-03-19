@@ -20,18 +20,25 @@ function App() {
         path="/"
         element={
           <ItemManager
-            students={students}
+            students={students || []}
             onDelete={handleDelete}
           />
         }
       />
+
       <Route
         path="/add"
         element={<AddStudent onAdd={handleAdd} />}
       />
+
       <Route
         path="/add/:index"
-        element={<AddStudent students={students} setStudents={setStudents} />}
+        element={
+          <AddStudent
+            students={students || []}
+            setStudents={setStudents}
+          />
+        }
       />
     </Routes>
   );

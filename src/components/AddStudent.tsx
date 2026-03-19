@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function AddStudent({ onAdd, students = [], setStudents }: any) {
   const navigate = useNavigate();
-  const { index } = useParams(); // get index from URL
-  const isEdit = index !== undefined;
+  const { index } = useParams();
+
+  const isEdit = index !== undefined && students?.[Number(index)];
 
   const [form, setForm] = useState({
     name: "",
@@ -13,16 +14,16 @@ function AddStudent({ onAdd, students = [], setStudents }: any) {
     year: ""
   });
 
-  // Prefill form if editing
+  // Prefill form safely
   useEffect(() => {
-    if (isEdit && students.length > 0) {
-      const student = students[Number(index)];
+    if (isEdit) {
+      const student = students?.[Number(index)];
       if (student) {
         setForm({
-          name: student.name,
-          age: String(student.age),
-          course: student.course,
-          year: String(student.year)
+          name: student.name || "",
+          age: String(student.age || ""),
+          course: student.course || "",
+          year: String(student.year || "")
         });
       }
     }
@@ -47,15 +48,15 @@ function AddStudent({ onAdd, students = [], setStudents }: any) {
       year: Number(form.year)
     };
 
-    if (isEdit) {
+    if (isEdit && setStudents) {
       const updated = [...students];
-      updated[Number(index)] = newStudent; // update existing
+      updated[Number(index)] = newStudent;
       setStudents(updated);
     } else {
-      onAdd(newStudent); // add new
+      onAdd && onAdd(newStudent);
     }
 
-    navigate("/"); // back to dashboard
+    navigate("/");
   };
 
   return (
